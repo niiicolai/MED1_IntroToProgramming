@@ -33,7 +33,3 @@ void draw() {
     flowers[i].boundariesCheck();
   }
 }
-
-int randomInt(int min, int max) {
-  return (int)random(min, max);
-}
