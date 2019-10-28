@@ -16,6 +16,15 @@ class Flower {
   // both are declared with either a random positive or negative value
   int xVelocity = (random(-5,5) > 0 ? velocitySpeed : -velocitySpeed);
   int yVelocity = (random(-5,5) > 0 ? velocitySpeed : -velocitySpeed);
+  
+  // The current index where we want to cache the position
+  int currentTailIndex;
+  
+  // The max number of tail elements which can be instantiated
+  int maxTailElements = 120;
+  
+  // The position of each tail element saved as a PVector object
+  PVector[] tailPositions = new PVector[maxTailElements];
 
   Flower(float temp_r, int temp_n_petals, float temp_x, float temp_y, int temp_petalColor) {
     r=temp_r;
@@ -27,6 +36,32 @@ class Flower {
 
   public void display () {
 
+    // cache the current position to the current iteration of the array
+    tailPositions[currentTailIndex] = new PVector(x, y);
+    
+    // increment the index value
+    currentTailIndex++;
+    
+    // if the index is equal or greater than the max length of our array
+    // tailPositions.length == maxTailElements
+    if (currentTailIndex >= maxTailElements) {
+      
+      // Reset the current index to zero
+      // to start inserting from the beginning again
+      currentTailIndex = 0; 
+    }
+    
+    // loop through all tail positions
+    for (int i = 0; i < tailPositions.length; i++) {
+      
+      // the current iteration doesn't have a value of 'null'
+      if (tailPositions[i] != null) {
+        
+        // draw a circle
+        circle(tailPositions[i].x, tailPositions[i].y, r/4);
+      }  
+    }
+    
     float ballX;
     float ballY;
 
@@ -39,7 +74,7 @@ class Flower {
       ellipse(ballX, ballY, r, r);
     }
     fill(200, 0, 0);
-    ellipse(x, y, r*1.2, r*1.2);
+    ellipse(x, y, r*1.2, r*1.2);        
   }
   
   // Moves the flower based on the given amount of velocity

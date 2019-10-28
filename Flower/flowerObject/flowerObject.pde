@@ -3,7 +3,7 @@
 Flower[] flowers;
 
 // The number of flowers we want to spawn
-int numberOfFlowers = 10;
+int numberOfFlowers = 3;
 
 // The min and max radius for a flower
 int radiusMin = 30;
