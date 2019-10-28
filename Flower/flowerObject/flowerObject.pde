@@ -20,7 +20,10 @@ void setup() {
   size(1200, 800);
   
   // Declare an instance of a flower array with the length of 'numberOfFlowers' 
-  flowers = new Flower[numberOfFlowers];
+  flowers = new Flower[numberOfFlowers+1];
+  
+  // Add a flower to the end of the array using the alternative constructor
+  flowers[flowers.length-1] = new Flower(width/2, height/2);
   
   // Loop from 0 to 'numberOfFlowers'
   for (int i = 0; i < numberOfFlowers; i++) {
@@ -38,7 +41,7 @@ void setup() {
     // Declare a random color using rgb values
     color _color = color(random(255), random(255), random(255));
     
-    // Add the flower with the generated parameters to the flower array
+    // Add a flower with the generated parameters to the flower array
     flowers[i] = new Flower(radius, petals, x, y, _color);
   }
 }

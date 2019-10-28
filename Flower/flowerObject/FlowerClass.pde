@@ -2,11 +2,11 @@ class Flower {
 
   // Variables
 
-  float r;       // radius of the flower petal
-  int n_petals;  // number of petals 
+  float r = 5;       // radius of the flower petal
+  int n_petals = 5;  // number of petals 
   float x;       // x-position of the center of the flower
   float y;       // y-position of the center of the flower
-  int petalColor;//hexadecimal number for the color of petals
+  int petalColor = #898989;//hexadecimal number for the color of petals
 
   // the number of pixels the flower should move
   // each time velocity is applied
@@ -17,11 +17,8 @@ class Flower {
   int xVelocity = (random(-5,5) > 0 ? velocitySpeed : -velocitySpeed);
   int yVelocity = (random(-5,5) > 0 ? velocitySpeed : -velocitySpeed);
   
-  // The current index where we want to cache the position
-  int currentTailIndex;
-  
   // The max number of tail elements which can be instantiated
-  int maxTailElements = 120;
+  int maxTailElements = 255;
   
   // The position of each tail element saved as a PVector object
   PVector[] tailPositions = new PVector[maxTailElements];
@@ -33,31 +30,34 @@ class Flower {
     y=temp_y;
     petalColor=temp_petalColor;
   }
+  
+  Flower(float temp_x, float temp_y) {
+    x=temp_x;
+    y=temp_y;
+  }
 
   public void display () {
-
-    // cache the current position to the current iteration of the array
-    tailPositions[currentTailIndex] = new PVector(x, y);
     
-    // increment the index value
-    currentTailIndex++;
-    
-    // if the index is equal or greater than the max length of our array
-    // tailPositions.length == maxTailElements
-    if (currentTailIndex >= maxTailElements) {
+    // loop through the tail positions array from behind
+    for (int i = tailPositions.length-1; i > 0; i--) {
       
-      // Reset the current index to zero
-      // to start inserting from the beginning again
-      currentTailIndex = 0; 
+      // move the current iteration one iteration up
+      tailPositions[i] = tailPositions[i-1];
     }
+
+    // cache the current position to the first iteration of the array
+    tailPositions[0] = new PVector(x, y);     
     
     // loop through all tail positions
     for (int i = 0; i < tailPositions.length; i++) {
       
-      // the current iteration doesn't have a value of 'null'
+      // if the current iteration doesn't have a value of 'null'
       if (tailPositions[i] != null) {
         
         // draw a circle
+        color c = color(random(255), random(255), random(255), tailPositions.length-i);
+        stroke(c);
+        fill(c);
         circle(tailPositions[i].x, tailPositions[i].y, r/4);
       }  
     }
