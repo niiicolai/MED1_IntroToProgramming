@@ -58,9 +58,9 @@ void draw() {
     flowers[i].boundariesCheck();
     
     if (i < flowers.length/2) {
-      flowers[i].cacheTail1(); 
+      flowers[i].displayTail1(); 
     } else {
-      flowers[i].cacheTail2();
+      flowers[i].displayTail2();
     }
   }
 }

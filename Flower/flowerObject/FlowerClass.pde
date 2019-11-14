@@ -40,7 +40,7 @@ class Flower {
     y=temp_y;
   }
 
-  public void cacheTail1() {
+  public void displayTail1() {
     // loop through the tail positions array from behind
     for (int i = tailPositions.length-1; i > 0; i--) {
 
@@ -59,7 +59,7 @@ class Flower {
   }
 
   // More efficient technique ~ https://processing.org/tutorials/arrays/
-  public void cacheTail2() {
+  public void displayTail2() {
     // cache the current position to the array element at the position
     // matching the value of tail index
     tailPositions[tailIndex] = new PVector(x, y);    
