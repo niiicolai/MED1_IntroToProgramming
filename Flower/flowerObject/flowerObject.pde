@@ -3,11 +3,11 @@
 Flower[] flowers;
 
 // The number of flowers we want to spawn
-int numberOfFlowers = 3;
+int numberOfFlowers = 2;
 
 // The min and max radius for a flower
-int radiusMin = 30;
-int radiusMax = 60;
+int radiusMin = 20;
+int radiusMax = 50;
 
 // The min and max amount petals a flower can have.
 int petalsMin = 7;
@@ -56,5 +56,11 @@ void draw() {
     flowers[i].display();
     flowers[i].move();
     flowers[i].boundariesCheck();
+    
+    if (i < flowers.length/2) {
+      flowers[i].cacheTail1(); 
+    } else {
+      flowers[i].cacheTail2();
+    }
   }
 }
