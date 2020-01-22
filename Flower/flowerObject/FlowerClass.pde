@@ -135,4 +135,15 @@ class Flower {
       yVelocity = -velocitySpeed;
     }
   }
+  
+  // Call to check if the flower overlap with another
+  boolean overlaps(Flower other) {
+    
+    // Get the distance between the two flowers
+    float d = dist(x, y, other.x, other.y);
+    
+    // return true if the distance is equal or less than
+    // the sum of the radius of both flowers
+    return (d <= r+other.r);
+  }
 }

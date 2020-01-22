@@ -57,6 +57,19 @@ void draw() {
     flowers[i].move();
     flowers[i].boundariesCheck();
     
+    // Loop through all flowers again
+    for (int x = 0; x < flowers.length; x++) {
+      
+      // if flower (i) is not the same as flower (x)
+      // and the flowers overlaps
+      if (flowers[i] != flowers[x] &&
+          flowers[i].overlaps(flowers[x])) {
+            
+            // change the petal color on flower (i)
+            flowers[i].petalColor = color(random(255), random(255), random(255));  
+          }
+    }
+    
     if (i < flowers.length/2) {
       flowers[i].displayTail1(); 
     } else {
